@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const authFetch = (route, { method = "GET", headers = {}, json = false, body = {}, auth = true } = {}) => {
+const authFetch = (
+  route,
+  { method = "GET", responseType, headers = {}, json = false, body = {}, auth = true } = {}
+) => {
   return new Promise((resolve, reject) => {
     axios({
-      url: "http://localhost:4000/api" + route,
+      responseType,
+      url: process.env.REACT_APP_API + route,
       method: method,
       headers: {
         ...headers,
